@@ -2,6 +2,10 @@
 <html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-s<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miguel Ángel Hernández Herrera | Ingeniero en Sistemas, PM & QA Lead</title>
 
@@ -12,19 +16,16 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#fffbe1',
-                            100: '#fff3c2',
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                            700: '#b45309',
+                        cyber: {
+                            500: '#06b6d4',
+                            600: '#0284c7',
+                             glow: 'rgba(6, 182, 212, 0.4)'
                         },
-                        warmDark: {
-                            900: '#1c1917',
-                            950: '#0c0a09',
-                            800: '#292524',
-                            700: '#44403c'
+                        darkBg: {
+                            950: '#050811',
+                            900: '#0a0f1d',
+                            800: '#111827',
+                            card: 'rgba(15, 23, 42, 0.65)'
                         }
                     }
                 }
@@ -38,145 +39,192 @@
     <!-- AOS Animation Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- Google Fonts (Plus Jakarta Sans) -->
+    <!-- Google Fonts (Syne & Plus Jakarta Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050811;
+            overflow-x: hidden;
+        }
+        .font-syne {
+            font-family: 'Syne', sans-serif;
         }
         /* Custom Premium Glassmorphism */
         .glass-card {
-            background: rgba(41, 37, 36, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(251, 191, 36, 0.1);
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
         .glass-card:hover {
-            border-color: rgba(251, 191, 36, 0.3);
-            box-shadow: 0 10px 30px -10px rgba(217, 119, 6, 0.2);
+            border-color: rgba(6, 182, 212, 0.4);
+            box-shadow: 0 10px 40px -10px rgba(6, 182, 212, 0.3);
+        }
+        /* Logo SVG Styling */
+        .logo-box {
+            border-left: 3px solid #06b6d4;
+            border-bottom: 3px solid #06b6d4;
+            padding: 2px 0 2px 8px;
+            font-family: 'Syne', sans-serif;
+            line-height: 1.1;
+            display: inline-block;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
         }
         /* Glowing Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+            background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #6366f1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        /* 3D Canvas Background */
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
     </style>
 </head>
-<body class="bg-warmDark-950 text-stone-200 antialiased selection:bg-brand-500 selection:text-white">
+<body class="text-slate-200 antialiased selection:bg-cyan-500 selection:text-white">
 
-    <!-- Canvas para Partículas de Fondo -->
-    <div id="particles-js" class="fixed inset-0 pointer-events-none z-0 opacity-40"></div>
+    <!-- 3D Three.js WebGL Canvas Background -->
+    <canvas id="webgl-canvas"></canvas>
 
     <!-- Header & Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-warmDark-950/80 backdrop-blur-md border-b border-stone-800">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-center relative">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-darkBg-950/80 backdrop-blur-xl border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Logo ING. Hedz -->
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <div class="logo-box text-left">
+                    <div class="text-lg font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">ING.</div>
+                    <div class="text-xl font-extrabold text-slate-300 group-hover:text-cyan-400 transition-colors">Hedz</div>
+                </div>
+            </a>
+
             <!-- Menú Navegación Centrado -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-stone-300">
-                <a href="#sobre-mi" class="hover:text-brand-400 transition-colors">Sobre Mí</a>
-                <a href="#experiencia" class="hover:text-brand-400 transition-colors">Experiencia</a>
-                <a href="#competencias" class="hover:text-brand-400 transition-colors">Competencias</a>
-                <a href="#certificaciones" class="hover:text-brand-400 transition-colors">Certificaciones</a>
-                <a href="#contacto" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-semibold transition-all shadow-lg shadow-amber-600/20 hover:scale-105">Contacto</a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#sobre-mi" class="hover:text-cyan-400 transition-colors">Sobre Mí</a>
+                <a href="#experiencia" class="hover:text-cyan-400 transition-colors">Experiencia</a>
+                <a href="#competencias" class="hover:text-cyan-400 transition-colors">Competencias</a>
+                <a href="#certificaciones" class="hover:text-cyan-400 transition-colors">Certificaciones</a>
+                <a href="#contacto" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold transition-all shadow-lg shadow-cyan-500/20 hover:scale-105">Contacto</a>
             </nav>
+
             <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden absolute right-6 text-stone-300 hover:text-white focus:outline-none">
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
                 <i class="fa-solid fa-bars text-2xl"></i>
             </button>
         </div>
+
         <!-- Mobile Nav Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-warmDark-900 border-b border-stone-800 px-6 py-4 space-y-3 text-center">
-            <a href="#sobre-mi" class="block text-stone-300 hover:text-brand-400">Sobre Mí</a>
-            <a href="#experiencia" class="block text-stone-300 hover:text-brand-400">Experiencia</a>
-            <a href="#competencias" class="block text-stone-300 hover:text-brand-400">Competencias</a>
-            <a href="#certificaciones" class="block text-stone-300 hover:text-brand-400">Certificaciones</a>
-            <a href="#contacto" class="block text-brand-400 font-semibold">Contacto</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-darkBg-900 border-b border-slate-800 px-6 py-4 space-y-3 text-center">
+            <a href="#sobre-mi" class="block text-slate-300 hover:text-cyan-400">Sobre Mí</a>
+            <a href="#experiencia" class="block text-slate-300 hover:text-cyan-400">Experiencia</a>
+            <a href="#competencias" class="block text-slate-300 hover:text-cyan-400">Competencias</a>
+            <a href="#certificaciones" class="block text-slate-300 hover:text-cyan-400">Certificaciones</a>
+            <a href="#contacto" class="block text-cyan-400 font-semibold">Contacto</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden z-10">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,119,6,0.15),rgba(255,255,255,0))]"></div>
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-6" data-aos="fade-up" data-aos-duration="1000">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-brand-400 text-sm font-medium">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>Disponible para nuevos retos profesionales</span>
+    <section id="inicio" class="min-h-screen flex items-center justify-center pt-24 pb-12 relative z-10">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-8" data-aos="fade-up" data-aos-duration="1000">
+            
+            <!-- Logo Principal Destacado 3D Glow -->
+            <div class="inline-block p-8 rounded-3xl glass-card border border-cyan-500/30 shadow-2xl shadow-cyan-500/10 mb-2">
+                <div class="logo-box text-left transform scale-125 md:scale-150 my-2">
+                    <div class="text-2xl font-bold text-slate-100">ING.</div>
+                    <div class="text-3xl font-extrabold text-slate-200">Hedz</div>
+                </div>
+            </div>
+
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                <span>Sistemas | Project Management | QA Lead</span>
             </div>
             
-            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight font-syne">
                 Miguel Ángel Hernández Herrera
             </h1>
             
-            <p class="text-xl sm:text-2xl text-stone-300 font-medium">
+            <p class="text-xl sm:text-2xl text-slate-300 font-medium">
                 <span id="typed"></span>
             </p>
             
-            <p class="max-w-2xl mx-auto text-stone-400 text-base sm:text-lg leading-relaxed">
-                Especializado en acoplar metodologías ágiles (<strong class="text-stone-200">Scrum, PMBOK</strong>) con arquitecturas de calidad rigurosas, automatización de pruebas e <strong class="text-brand-400">Inteligencia Artificial Generativa</strong> para optimizar el ciclo de vida del software.
+            <p class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg leading-relaxed">
+                Especializado en acoplar metodologías ágiles (<strong class="text-slate-200">Scrum, PMBOK</strong>) con arquitecturas de calidad rigurosas, automatización de pruebas e <strong class="text-cyan-400">Inteligencia Artificial Generativa</strong> para optimizar el ciclo de vida del software.
             </p>
             
             <div class="flex flex-wrap justify-center gap-4 pt-4">
-                <a href="#experiencia" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-semibold transition-all shadow-lg shadow-amber-600/25 flex items-center gap-2 hover:scale-105">
-                    Ver Trayectoria <i class="fa-solid fa-arrow-down text-sm"></i>
+                <a href="#experiencia" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold transition-all shadow-lg shadow-cyan-500/25 flex items-center gap-2 hover:scale-105">
+                    Explorar Trayectoria <i class="fa-solid fa-arrow-down text-sm"></i>
                 </a>
-                <a href="#contacto" class="px-7 py-3.5 rounded-xl bg-warmDark-900 hover:bg-warmDark-800 text-stone-200 border border-stone-800 font-semibold transition-all hover:border-stone-700 hover:scale-105">
+                <a href="#contacto" class="px-7 py-3.5 rounded-xl bg-darkBg-900 hover:bg-darkBg-800 text-slate-200 border border-slate-700 font-semibold transition-all hover:border-cyan-500 hover:scale-105">
                     Contactar Ahora
                 </a>
             </div>
             
-            <div class="flex justify-center gap-6 pt-6 text-stone-400 text-2xl">
-                <a href="mailto:angel87hz02@gmail.com" class="hover:text-brand-400 transition-transform hover:scale-125"><i class="fa-solid fa-envelope"></i></a>
-                <a href="tel:+525549070918" class="hover:text-brand-400 transition-transform hover:scale-125"><i class="fa-solid fa-phone"></i></a>
-                <a href="https://www.linkedin.com/in/%C3%A1ngel-hern%C3%A1ndez-herrera-988224292" target="_blank" class="hover:text-brand-400 transition-transform hover:scale-125"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com" target="_blank" class="hover:text-brand-400 transition-transform hover:scale-125"><i class="fa-brands fa-github"></i></a>
+            <div class="flex justify-center gap-6 pt-6 text-slate-400 text-2xl">
+                <a href="mailto:angel87hz02@gmail.com" class="hover:text-cyan-400 transition-transform hover:scale-125"><i class="fa-solid fa-envelope"></i></a>
+                <a href="tel:+525549070918" class="hover:text-cyan-400 transition-transform hover:scale-125"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://www.linkedin.com/in/%C3%A1ngel-hern%C3%A1ndez-herrera-988224292" target="_blank" class="hover:text-cyan-400 transition-transform hover:scale-125"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com" target="_blank" class="hover:text-cyan-400 transition-transform hover:scale-125"><i class="fa-brands fa-github"></i></a>
             </div>
         </div>
     </section>
 
     <!-- Sobre Mí Section -->
-    <section id="sobre-mi" class="py-24 bg-warmDark-900/50 border-t border-stone-800/50 relative z-10">
-        <div class="max-w-5xl mx-auto px-6">
+    <section id="sobre-mi" class="py-24 relative z-10 border-t border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="space-y-2 mb-12" data-aos="fade-right">
-                <h2 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-                    <span class="text-brand-500 font-mono text-xl">01.</span> Sobre Mí
+                <h2 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3 font-syne">
+                    <span class="text-cyan-400 font-mono text-xl">01.</span> Sobre Mí
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-amber-600 rounded-full"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-                <div class="md:col-span-2 space-y-4 text-stone-300 leading-relaxed text-lg" data-aos="fade-up">
+                <div class="md:col-span-2 space-y-4 text-slate-300 leading-relaxed text-lg" data-aos="fade-up">
                     <p>
-                        Soy <strong class="text-white">Ingeniero en Sistemas Computacionales</strong> titulado por la Universidad UTEL, con sede en la Ciudad de México. Cuento con una sólida trayectoria en la gestión de proyectos tecnológicos complejos, liderazgo de equipos multidisciplinarios y aseguramiento de calidad de software (<span class="text-brand-400 font-semibold">QA Lead</span>).
+                        Soy <strong class="text-white">Ingeniero en Sistemas Computacionales</strong> titulado por la Universidad UTEL, con sede en la Ciudad de México. Cuento con una sólida trayectoria en la gestión de proyectos tecnológicos complejos, liderazgo de equipos multidisciplinarios y aseguramiento de calidad de software (<span class="text-cyan-400 font-semibold">QA Lead</span>).
                     </p>
                     <p>
-                        Mi enfoque combina las mejores prácticas de gestión tradicional y ágil (<span class="text-brand-400 font-semibold">Scrum, PMBOK, CMMI Nivel 5</span>) con la adopción vanguardista de herramientas de Inteligencia Artificial Generativa (<span class="text-brand-400 font-semibold">Prompt Engineering, Gemini AI Studio</span>).
+                        Mi enfoque combina las mejores prácticas de gestión tradicional y ágil (<span class="text-cyan-400 font-semibold">Scrum, PMBOK, CMMI Nivel 5</span>) con la adopción vanguardista de herramientas de Inteligencia Artificial Generativa (<span class="text-cyan-400 font-semibold">Prompt Engineering, Gemini AI Studio</span>).
                     </p>
-                    <div class="pt-4 flex flex-wrap gap-6 text-sm text-stone-400 font-medium">
-                        <div class="flex items-center gap-2 bg-warmDark-800/60 px-4 py-2 rounded-lg border border-stone-800">
-                            <i class="fa-solid fa-location-dot text-brand-500"></i> Ciudad de México, México
+                    <div class="pt-4 flex flex-wrap gap-6 text-sm text-slate-400 font-medium">
+                        <div class="flex items-center gap-2 bg-darkBg-800/80 px-4 py-2 rounded-lg border border-slate-800">
+                            <i class="fa-solid fa-location-dot text-cyan-400"></i> Ciudad de México, México
                         </div>
-                        <div class="flex items-center gap-2 bg-warmDark-800/60 px-4 py-2 rounded-lg border border-stone-800">
-                            <i class="fa-solid fa-language text-brand-500"></i> Español (Nativo) | Inglés Técnico Intermedio
+                        <div class="flex items-center gap-2 bg-darkBg-800/80 px-4 py-2 rounded-lg border border-slate-800">
+                            <i class="fa-solid fa-language text-cyan-400"></i> Español (Nativo) | Inglés Técnico
                         </div>
                     </div>
                 </div>
                 
-                <div class="glass-card p-6 rounded-2xl shadow-xl space-y-4 flex flex-col justify-center" data-aos="fade-left">
-                    <h3 class="font-bold text-white border-b border-stone-800 pb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-star text-brand-500"></i> Perfil Clave
+                <div class="glass-card p-6 rounded-2xl space-y-4 flex flex-col justify-center" data-tilt data-aos="fade-left">
+                    <h3 class="font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-microchip text-cyan-400"></i> Perfil Clave
                     </h3>
-                    <ul class="space-y-3 text-sm text-stone-300">
+                    <ul class="space-y-3 text-sm text-slate-300">
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-brand-500 mt-1"></i>
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
                             <span>Liderazgo y coordinación de equipos multidisciplinarios.</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-brand-500 mt-1"></i>
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
                             <span>Estrategias globales de pruebas y automatización (QA).</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-brand-500 mt-1"></i>
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
                             <span>Innovación aplicada con IA y Prompt Engineering.</span>
                         </li>
                     </ul>
@@ -186,25 +234,25 @@
     </section>
 
     <!-- Experiencia Profesional Section -->
-    <section id="experiencia" class="py-24 border-t border-stone-800/50 relative z-10">
-        <div class="max-w-5xl mx-auto px-6">
+    <section id="experiencia" class="py-24 relative z-10 border-t border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="space-y-2 mb-12" data-aos="fade-right">
-                <h2 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-                    <span class="text-brand-500 font-mono text-xl">02.</span> Trayectoria Profesional
+                <h2 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3 font-syne">
+                    <span class="text-cyan-400 font-mono text-xl">02.</span> Trayectoria Profesional
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-amber-600 rounded-full"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"></div>
             </div>
             
-            <div class="space-y-12 border-l-2 border-stone-800 ml-3 pl-6 md:pl-8 relative">
+            <div class="space-y-12 border-l-2 border-slate-800 ml-3 pl-6 md:pl-8 relative">
                 
                 <!-- Experiencia 1 -->
                 <div class="relative group" data-aos="fade-up">
-                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-brand-500 ring-8 ring-warmDark-950 group-hover:scale-125 transition-transform"></div>
-                    <div class="glass-card p-6 md:p-8 rounded-2xl transition-all">
-                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20 font-semibold">Febrero 2026 - Presente</span>
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-cyan-400 ring-8 ring-darkBg-950 group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 md:p-8 rounded-2xl transition-all" data-tilt>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-semibold">Febrero 2026 - Presente</span>
                         <h3 class="text-xl font-bold text-white mt-3">Asesor Empresarial & QA Lead</h3>
-                        <h4 class="text-brand-400 font-medium text-sm mb-4">JJM Tecnologías Innovadoras, S.A. de C.V.</h4>
-                        <ul class="space-y-2 text-stone-300 text-sm md:text-base list-disc list-inside leading-relaxed">
+                        <h4 class="text-cyan-400 font-medium text-sm mb-4">JJM Tecnologías Innovadoras, S.A. de C.V.</h4>
+                        <ul class="space-y-2 text-slate-300 text-sm md:text-base list-disc list-inside leading-relaxed">
                             <li><strong class="text-white">Gestión Estratégica:</strong> Coordinación de equipos multidisciplinarios para el diseño, planeación y ejecución de proyectos tecnológicos.</li>
                             <li><strong class="text-white">Mitigación de Riesgos y Control:</strong> Implementación de estrategias de mitigación en planes de trabajo y seguimiento a stakeholders.</li>
                             <li><strong class="text-white">Innovación con IA:</strong> Rediseño de interfaces y propuestas UX con IA y Prompt Engineering avanzado.</li>
@@ -215,12 +263,12 @@
 
                 <!-- Experiencia 2 -->
                 <div class="relative group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-stone-700 ring-8 ring-warmDark-950 group-hover:bg-brand-500 group-hover:scale-125 transition-all"></div>
-                    <div class="glass-card p-6 md:p-8 rounded-2xl transition-all">
-                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-stone-800 text-stone-300 border border-stone-700">Noviembre 2023 - Diciembre 2025</span>
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-slate-700 ring-8 ring-darkBg-950 group-hover:bg-cyan-400 group-hover:scale-125 transition-all"></div>
+                    <div class="glass-card p-6 md:p-8 rounded-2xl transition-all" data-tilt>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">Noviembre 2023 - Diciembre 2025</span>
                         <h3 class="text-xl font-bold text-white mt-3">Project Manager & Ingeniero de Pruebas Sr.</h3>
-                        <h4 class="text-brand-400 font-medium text-sm mb-4">Fundación Ai-Koi, A.C.</h4>
-                        <ul class="space-y-2 text-stone-300 text-sm md:text-base list-disc list-inside leading-relaxed">
+                        <h4 class="text-cyan-400 font-medium text-sm mb-4">Fundación Ai-Koi, A.C.</h4>
+                        <ul class="space-y-2 text-slate-300 text-sm md:text-base list-disc list-inside leading-relaxed">
                             <li><strong class="text-white">Administración de Proyectos:</strong> Gestión integral del ciclo de vida del software y control de tableros JIRA.</li>
                             <li><strong class="text-white">Gestión de Clientes & Calidad:</strong> Definición de requerimientos, presentaciones formales y documentación de liberación.</li>
                             <li><strong class="text-white">Control de Defectos:</strong> Diseño de matrices de prueba, análisis de aceptación y resolución de hallazgos.</li>
@@ -230,12 +278,12 @@
 
                 <!-- Experiencia 3 -->
                 <div class="relative group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-stone-700 ring-8 ring-warmDark-950 group-hover:bg-brand-500 group-hover:scale-125 transition-all"></div>
-                    <div class="glass-card p-6 md:p-8 rounded-2xl transition-all">
-                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-stone-800 text-stone-300 border border-stone-700">2022 - 2023</span>
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-slate-700 ring-8 ring-darkBg-950 group-hover:bg-cyan-400 group-hover:scale-125 transition-all"></div>
+                    <div class="glass-card p-6 md:p-8 rounded-2xl transition-all" data-tilt>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">2022 - 2023</span>
                         <h3 class="text-xl font-bold text-white mt-3">Ingeniero de Pruebas Jr. (Freelance)</h3>
-                        <h4 class="text-brand-400 font-medium text-sm mb-4">Consultor Independiente / ND Negocios Digitales</h4>
-                        <ul class="space-y-2 text-stone-300 text-sm md:text-base list-disc list-inside leading-relaxed">
+                        <h4 class="text-cyan-400 font-medium text-sm mb-4">Consultor Independiente / ND Negocios Digitales</h4>
+                        <ul class="space-y-2 text-slate-300 text-sm md:text-base list-disc list-inside leading-relaxed">
                             <li><strong class="text-white">Ejecución de Pruebas:</strong> Diseño de pruebas funcionales, regresión y UAT en Apps web y móviles (iOS/Android).</li>
                             <li><strong class="text-white">Proyecto Banjercito:</strong> Ejecución de pruebas y validación funcional directa con el cliente.</li>
                             <li><strong class="text-white">Alineación CMMI:</strong> Participación activa en la certificación de CMMI Nivel 5.</li>
@@ -248,59 +296,59 @@
     </section>
 
     <!-- Core Competencies & Tech Stack Section -->
-    <section id="competencias" class="py-24 bg-warmDark-900/50 border-t border-stone-800/50 relative z-10">
-        <div class="max-w-5xl mx-auto px-6">
+    <section id="competencias" class="py-24 relative z-10 border-t border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="space-y-2 mb-12" data-aos="fade-right">
-                <h2 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-                    <span class="text-brand-500 font-mono text-xl">03.</span> Core Competencies & Tech Stack
+                <h2 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3 font-syne">
+                    <span class="text-cyan-400 font-mono text-xl">03.</span> Core Competencies & Tech Stack
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-amber-600 rounded-full"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 <!-- Category 1 -->
-                <div class="glass-card p-6 rounded-2xl space-y-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-xl">
+                <div class="glass-card p-6 rounded-2xl space-y-4" data-tilt data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
                         <i class="fa-solid fa-diagram-project"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white">Gestión & Metodologías</h3>
-                    <ul class="space-y-2.5 text-sm text-stone-300">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Scrum & PMBOK</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Liderazgo de Equipos</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Gestión de Riesgos</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Participación CMMI Nivel 5</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Negociación con Stakeholders</li>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Scrum & PMBOK</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Liderazgo de Equipos</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Gestión de Riesgos</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Participación CMMI Nivel 5</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Negociación con Stakeholders</li>
                     </ul>
                 </div>
 
                 <!-- Category 2 -->
-                <div class="glass-card p-6 rounded-2xl space-y-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-xl">
+                <div class="glass-card p-6 rounded-2xl space-y-4" data-tilt data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
                         <i class="fa-solid fa-vial-circle-check"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white">QA & Automatización</h3>
-                    <ul class="space-y-2.5 text-sm text-stone-300">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Cypress & Selenium IDE</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> TestCase Studio & Katalon</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Pruebas Funcionales, UAT & Regresión</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Estrategias & Matrices de Pruebas</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Pruebas Web & Móviles (iOS/Android)</li>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Cypress & Selenium IDE</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> TestCase Studio & Katalon</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Pruebas Funcionales, UAT & Regresión</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Estrategias & Matrices de Pruebas</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Pruebas Web & Móviles (iOS/Android)</li>
                     </ul>
                 </div>
 
                 <!-- Category 3 -->
-                <div class="glass-card p-6 rounded-2xl space-y-4" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-xl">
+                <div class="glass-card p-6 rounded-2xl space-y-4" data-tilt data-aos="zoom-in" data-aos-delay="300">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
                         <i class="fa-solid fa-brain"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white">Herramientas, IA & Backend</h3>
-                    <ul class="space-y-2.5 text-sm text-stone-300">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> JIRA, Trello, GitHub</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Gemini, Gemini AI Studio & ChatGPT</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> MySQL, Node.js, XAMPP</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> VS Code, FileZilla</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand-500"></i> Prompt Engineering & UI Redesign</li>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> JIRA, Trello, GitHub</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Gemini, Gemini AI Studio & ChatGPT</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> MySQL, Node.js, XAMPP</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> VS Code, FileZilla</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-cyan-400"></i> Prompt Engineering & UI Redesign</li>
                     </ul>
                 </div>
 
@@ -309,34 +357,34 @@
     </section>
 
     <!-- Certificaciones y Educación Section -->
-    <section id="certificaciones" class="py-24 border-t border-stone-800/50 relative z-10">
-        <div class="max-w-5xl mx-auto px-6">
+    <section id="certificaciones" class="py-24 relative z-10 border-t border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="space-y-2 mb-12" data-aos="fade-right">
-                <h2 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-                    <span class="text-brand-500 font-mono text-xl">04.</span> Certificaciones & Educación
+                <h2 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3 font-syne">
+                    <span class="text-cyan-400 font-mono text-xl">04.</span> Certificaciones & Educación
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-amber-600 rounded-full"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Certificaciones -->
                 <div class="space-y-6" data-aos="fade-up">
                     <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-award text-brand-500"></i> Certificaciones Clave
+                        <i class="fa-solid fa-award text-cyan-400"></i> Certificaciones Clave
                     </h3>
                     <div class="glass-card p-6 rounded-2xl space-y-4">
-                        <div class="border-b border-stone-800 pb-4">
-                            <span class="text-xs font-mono text-brand-400">Credencial ID: 1180713</span>
+                        <div class="border-b border-slate-800 pb-4">
+                            <span class="text-xs font-mono text-cyan-400">Credencial ID: 1180713</span>
                             <h4 class="font-bold text-white text-lg">Scrum Fundamentals Certified (SFC)</h4>
-                            <p class="text-sm text-stone-400">5th Edition</p>
+                            <p class="text-sm text-slate-400">5th Edition</p>
                         </div>
-                        <div class="border-b border-stone-800 pb-4">
+                        <div class="border-b border-slate-800 pb-4">
                             <h4 class="font-bold text-white text-lg">Certificación en Planificación y Gestión de Proyectos</h4>
-                            <p class="text-sm text-stone-400">PMBOK, Agile & Scrum</p>
+                            <p class="text-sm text-slate-400">PMBOK, Agile & Scrum</p>
                         </div>
                         <div>
                             <h4 class="font-bold text-white text-lg">Testing Masterclass con IA</h4>
-                            <p class="text-sm text-stone-400">Especialización avanzada en QA y Automatización</p>
+                            <p class="text-sm text-slate-400">Especialización avanzada en QA y Automatización</p>
                         </div>
                     </div>
                 </div>
@@ -344,18 +392,18 @@
                 <!-- Educación -->
                 <div class="space-y-6" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-graduation-cap text-brand-500"></i> Formación Académica
+                        <i class="fa-solid fa-graduation-cap text-cyan-400"></i> Formación Académica
                     </h3>
                     <div class="glass-card p-6 rounded-2xl space-y-6">
                         <div>
                             <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 font-semibold">Titulado (2022 - 2025)</span>
                             <h4 class="font-bold text-white text-lg mt-3">Ingeniería en Sistemas Computacionales</h4>
-                            <p class="text-sm text-brand-400 font-medium">Universidad UTEL</p>
+                            <p class="text-sm text-cyan-400 font-medium">Universidad UTEL</p>
                         </div>
-                        <div class="border-t border-stone-800 pt-4">
-                            <span class="text-xs font-mono text-stone-400 bg-stone-800 px-3 py-1 rounded-full">Trunco (2008 - 2011)</span>
+                        <div class="border-t border-slate-800 pt-4">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-800 px-3 py-1 rounded-full">Trunco (2008 - 2011)</span>
                             <h4 class="font-bold text-white text-lg mt-3">Ingeniería en Sistemas Computacionales</h4>
-                            <p class="text-sm text-stone-400">Instituto Tecnológico de Milpa Alta</p>
+                            <p class="text-sm text-slate-400">Instituto Tecnológico de Milpa Alta</p>
                         </div>
                     </div>
                 </div>
@@ -364,39 +412,37 @@
     </section>
 
     <!-- Contacto Section -->
-    <section id="contacto" class="py-24 bg-warmDark-900/50 border-t border-stone-800/50 relative z-10">
+    <section id="contacto" class="py-24 relative z-10 border-t border-slate-800/80">
         <div class="max-w-3xl mx-auto px-6 text-center space-y-6" data-aos="zoom-in">
-            <h2 class="text-3xl font-extrabold tracking-tight text-white">¿Hablamos sobre tu próximo proyecto?</h2>
-            <p class="text-stone-400 max-w-xl mx-auto text-lg">
-                Estoy disponible para colaborar como <strong class="text-stone-200">Asesor Empresarial, Project Manager o QA Lead</strong>. Conéctate conmigo a través de cualquiera de los siguientes medios:
+            <h2 class="text-3xl font-extrabold tracking-tight text-white font-syne">¿Hablamos sobre tu próximo proyecto?</h2>
+            <p class="text-slate-400 max-w-xl mx-auto text-lg">
+                Estoy disponible para colaborar como <strong class="text-slate-200">Asesor Empresarial, Project Manager o QA Lead</strong>.
             </p>
             <div class="flex flex-wrap justify-center gap-4 pt-4">
-                <a href="mailto:angel87hz02@gmail.com" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-semibold transition-all shadow-lg shadow-amber-600/25 flex items-center gap-2 hover:scale-105">
+                <a href="mailto:angel87hz02@gmail.com" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold transition-all shadow-lg shadow-cyan-500/25 flex items-center gap-2 hover:scale-105">
                     <i class="fa-solid fa-envelope"></i> angel87hz02@gmail.com
                 </a>
-                <a href="tel:+525549070918" class="px-7 py-3.5 rounded-xl bg-warmDark-900 hover:bg-warmDark-800 text-stone-200 border border-stone-800 font-semibold transition-all flex items-center gap-2 hover:scale-105">
+                <a href="tel:+525549070918" class="px-7 py-3.5 rounded-xl bg-darkBg-900 hover:bg-darkBg-800 text-slate-200 border border-slate-700 font-semibold transition-all flex items-center gap-2 hover:scale-105">
                     <i class="fa-solid fa-phone"></i> +52 55 4907 0918
                 </a>
             </div>
-            <div class="flex justify-center gap-6 pt-6 text-stone-400 text-2xl">
-                <a href="https://www.linkedin.com/in/%C3%A1ngel-hern%C3%A1ndez-herrera-988224292" target="_blank" class="hover:text-brand-400 transition-transform hover:scale-125"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com" target="_blank" class="hover:text-brand-400 transition-transform hover:scale-125"><i class="fa-brands fa-github"></i></a>
+            <div class="flex justify-center gap-6 pt-6 text-slate-400 text-2xl">
+                <a href="https://www.linkedin.com/in/%C3%A1ngel-hern%C3%A1ndez-herrera-988224292" target="_blank" class="hover:text-cyan-400 transition-transform hover:scale-125"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com" target="_blank" class="hover:text-cyan-400 transition-transform hover:scale-125"><i class="fa-brands fa-github"></i></a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 bg-warmDark-950 border-t border-stone-800/50 text-center text-sm text-stone-500 relative z-10">
-        <p>© 2026 Miguel Ángel Hernández Herrera. Todos los derechos reservados.</p>
+    <footer class="py-8 bg-darkBg-950 border-t border-slate-800/80 text-center text-sm text-slate-500 relative z-10">
+        <p>© 2026 Miguel Ángel Hernández Herrera (ING. Hedz). Todos los derechos reservados.</p>
     </footer>
 
     <!-- Libraries & Scripts -->
-    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Typed.js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
     <script>
         // AOS Initializer
@@ -427,28 +473,85 @@
             menu.classList.toggle('hidden');
         });
 
-        // Particles.js Configuration
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#d97706" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": false },
-                "size": { "value": 3, "random": true },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#d97706",
-                    "opacity": 0.2,
-                    "width": 1
-                },
-                "move": { "enable": true, "speed": 1.5, "direction": "none", "out_mode": "out" }
-            },
-            "interactivity": {
-                "events": {
-                    "onhover": { "enable": true, "mode": "grab" }
-                }
-            }
+        // Vanilla Tilt 3D Card Effect Initialization
+        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+            max: 10,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.2
+        });
+
+        // --- Three.js 3D Interactive Background Scene ---
+        const canvas = document.getElementById('webgl-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Create 3D Wireframe Geometry
+        const geometry = new THREE.IcosahedronGeometry(12, 2);
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x06b6d4,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
+
+        // Add 3D Particle Field
+        const particlesGeometry = new THREE.BufferGeometry();
+        const count = 700;
+        const positions = new Float32Array(count * 3);
+
+        for(let i = 0; i < count * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 80;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.12,
+            color: 0x38bdf8,
+            transparent: true,
+            opacity: 0.5
+        });
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+
+        camera.position.z = 28;
+
+        // Interactive Mouse Movement
+        let mouseX = 0;
+        let mouseY = 0;
+
+        window.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth - 0.5) * 0.5;
+            mouseY = (event.clientY / window.innerHeight - 0.5) * 0.5;
+        });
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            sphere.rotation.x += 0.0015;
+            sphere.rotation.y += 0.0025;
+
+            particles.rotation.y += 0.0008;
+
+            sphere.rotation.y += (mouseX - sphere.rotation.y) * 0.05;
+            sphere.rotation.x += (mouseY - sphere.rotation.x) * 0.05;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
     </script>
 </body>
