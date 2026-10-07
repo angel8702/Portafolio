@@ -19,8 +19,9 @@
                             teal: '#0D9488',
                             cyan: '#06B6D4',
                             blue: '#2563EB',
+                            purple: '#4F46E5',
                             dark: '#0F172A',
-                            slateBg: '#F8FAFC'
+                            lightBg: '#F8FAFC'
                         }
                     }
                 }
@@ -36,9 +37,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Sal.js (Scroll Animation Library - Ultra Ligera) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sal.js/0.8.5/sal.css">
-
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -47,9 +45,8 @@
             overflow-x: hidden;
         }
         
-        /* Banner con gradiente moderno y dinámico */
         .hero-banner {
-            background: linear-gradient(135deg, #0F172A 0%, #0D9488 50%, #0284C7 100%);
+            background: linear-gradient(135deg, #0D9488 0%, #06B6D4 40%, #2563EB 100%);
             position: relative;
         }
 
@@ -63,18 +60,16 @@
             z-index: 1;
         }
 
-        /* Tarjeta Pro / Efecto Glassmorphism */
-        .pro-card {
+        .clean-card {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            box-shadow: 0 4px 20px -2px rgba(148, 163, 184, 0.12);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px -2px rgba(148, 163, 184, 0.15);
+            transition: all 0.3s ease;
         }
-
-        .pro-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px -10px rgba(13, 148, 136, 0.18);
-            border-color: #0D9488;
+        .clean-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px -5px rgba(13, 148, 136, 0.15);
+            border-color: #CBD5E1;
         }
 
         .logo-box-light {
@@ -86,21 +81,16 @@
             flex-direction: column;
             white-space: nowrap;
         }
-
-        /* Suavizar animaciones */
-        [data-sal] {
-            transition-duration: 0.6s !important;
-        }
     </style>
 </head>
 <body class="antialiased selection:bg-teal-500 selection:text-white">
 
-    <!-- Navbar Sticky con Glassmorphism -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 w-full transition-all">
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
             
-            <a href="#inicio" class="flex-shrink-0 flex items-center group">
-                <div class="logo-box-light group-hover:border-teal-500 transition-colors">
+            <a href="#inicio" class="flex-shrink-0 flex items-center">
+                <div class="logo-box-light">
                     <span class="text-xs font-bold text-slate-900 tracking-wider uppercase">ING.</span>
                     <span class="text-base font-extrabold text-teal-600">Angel Hernández</span>
                 </div>
@@ -113,16 +103,16 @@
                 <a href="#proyectos" class="hover:text-teal-600 transition-colors whitespace-nowrap">Proyectos Clave</a>
                 <a href="#competencias" class="hover:text-teal-600 transition-colors whitespace-nowrap">Competencias</a>
                 <a href="#educacion" class="hover:text-teal-600 transition-colors whitespace-nowrap">Educación & Cursos</a>
-                <a href="#contacto" class="px-5 py-2.5 rounded-full bg-teal-600 hover:bg-teal-700 text-white font-semibold transition-all shadow-md shadow-teal-600/20 hover:scale-105 whitespace-nowrap">Contacto</a>
+                <a href="#contacto" class="px-5 py-2.5 rounded-full bg-teal-600 hover:bg-teal-700 text-white font-semibold transition-all shadow-md shadow-teal-600/20 whitespace-nowrap">Contacto</a>
             </nav>
 
-            <button id="menu-btn" class="md:hidden text-slate-700 focus:outline-none p-2" aria-label="Abrir Menú">
+            <button id="menu-btn" class="md:hidden text-slate-700 focus:outline-none p-2">
                 <i class="fa-solid fa-bars text-2xl"></i>
             </button>
         </div>
 
         <!-- Menú Móvil -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-b border-slate-200 px-6 py-4 space-y-3 text-center">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3 text-center">
             <a href="#sobre-mi" class="block text-slate-700 hover:text-teal-600 font-medium">Sobre Mí</a>
             <a href="#experiencia" class="block text-slate-700 hover:text-teal-600 font-medium">Experiencia</a>
             <a href="#proyectos" class="block text-slate-700 hover:text-teal-600 font-medium">Proyectos Clave</a>
@@ -132,13 +122,13 @@
         </div>
     </header>
 
-    <!-- Hero Section con interacción de partículas -->
-    <section id="inicio" class="hero-banner text-white py-28 md:py-36 relative overflow-hidden">
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-banner text-white py-24 md:py-32 relative overflow-hidden">
         <canvas id="interactive-bg"></canvas>
 
-        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center space-y-8" data-sal="fade" data-sal-duration="800">
-            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm md:text-base font-medium shadow-lg">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center space-y-8">
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm md:text-base font-medium shadow-sm">
+                <i class="fa-solid fa-circle-check text-teal-300"></i>
                 <span>Ingeniero en Sistemas | Asesor Empresarial - PMO Jr & QA Lead</span>
             </div>
 
@@ -146,15 +136,15 @@
                 Angel Hernández
             </h1>
 
-            <p class="text-lg sm:text-2xl text-teal-100 font-light max-w-3xl mx-auto leading-relaxed">
+            <p class="text-lg sm:text-2xl text-teal-50 font-normal max-w-3xl mx-auto leading-relaxed">
                 Gestión de Proyectos, Quality Assurance y Optimización de Procesos impulsados por Inteligencia Artificial.
             </p>
 
             <div class="flex flex-wrap justify-center items-center gap-4 pt-4">
-                <a href="https://wa.me/525549070918" target="_blank" class="px-8 py-3.5 rounded-full bg-white text-teal-900 hover:bg-slate-100 font-bold shadow-xl transition-all hover:scale-105 flex items-center gap-2">
+                <a href="https://wa.me/525549070918" target="_blank" class="px-8 py-3.5 rounded-full bg-white text-teal-800 hover:bg-slate-100 font-bold shadow-lg transition-all hover:scale-105 flex items-center gap-2">
                     <i class="fa-brands fa-whatsapp text-emerald-600 text-xl"></i> Contactar
                 </a>
-                <a href="#experiencia" class="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold transition-all hover:scale-105 backdrop-blur-sm">
+                <a href="#experiencia" class="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold transition-all hover:scale-105">
                     Ver Trayectoria
                 </a>
             </div>
@@ -162,42 +152,42 @@
     </section>
 
     <!-- Sobre Mí -->
-    <section id="sobre-mi" class="py-24 bg-white">
+    <section id="sobre-mi" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16" data-sal="slide-up">
-                <h2 class="text-3xl font-extrabold text-slate-900">Sobre Mí</h2>
-                <div class="w-16 h-1 bg-teal-600 mx-auto rounded-full"></div>
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Sobre Mí</h2>
+                <div class="w-12 h-1 bg-teal-600 mx-auto rounded-full"></div>
                 <p class="text-slate-600 text-lg">Profesional orientado a resultados, mejora continua y aseguramiento de calidad de software.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="md:col-span-2 space-y-4 text-slate-600 leading-relaxed text-lg" data-sal="slide-up" data-sal-delay="100">
+                <div class="md:col-span-2 space-y-4 text-slate-600 leading-relaxed text-lg">
                     <p>
-                        Soy <strong class="text-slate-900 font-semibold">Ingeniero en Sistemas Computacionales</strong> titulado por la Universidad UTEL. Cuento con más de un año de experiencia liderando proyectos y equipos multidisciplinarios, garantizando soluciones de alta calidad mediante una colaboración efectiva entre áreas de desarrollo, producto y negocio.
+                        Soy <strong class="text-slate-900">Ingeniero en Sistemas Computacionales</strong> titulado por la Universidad UTEL. Cuento con más de un año de experiencia liderando proyectos y equipos multidisciplinarios, garantizando soluciones de alta calidad mediante una colaboración efectiva entre áreas de desarrollo, producto y negocio.
                     </p>
                     <p>
-                        Poseo más de tres años de experiencia en <strong class="text-teal-700 font-semibold">Quality Assurance (QA)</strong>, definiendo estrategias de validación y ejecutando pruebas funcionales, de integración, regresión y UAT para aplicaciones web y móviles bajo metodologías ágiles.
+                        Poseo más de tres años de experiencia en <strong class="text-teal-700">Quality Assurance (QA)</strong>, definiendo estrategias de validación y ejecutando pruebas funcionales, de integración, regresión y UAT para aplicaciones web y móviles bajo metodologías ágiles.
                     </p>
                     <p>
-                        Complemento mi perfil con el uso de herramientas de <strong class="text-slate-900 font-semibold">Inteligencia Artificial</strong> para optimizar la productividad, diseñar propuestas visuales/UX mediante <em>prompt engineering</em> avanzado, automatizar pruebas y fortalecer la toma de decisiones.
+                        Complemento mi perfil con el uso de herramientas de <strong class="text-slate-900">Inteligencia Artificial</strong> para optimizar la productividad, diseñar propuestas visuales/UX mediante <em>prompt engineering</em> avanzado, automatizar pruebas y fortalecer la toma de decisiones.
                     </p>
                 </div>
 
-                <div class="pro-card p-6 rounded-2xl space-y-5 bg-slate-50 border-slate-200" data-sal="slide-up" data-sal-delay="200">
-                    <h3 class="font-bold text-slate-900 border-b border-slate-200 pb-3 flex items-center gap-2 text-lg">
-                        <i class="fa-solid fa-id-card text-teal-600"></i> Datos Clave
+                <div class="clean-card p-6 rounded-2xl space-y-4 bg-slate-50 border-slate-200">
+                    <h3 class="font-bold text-slate-900 border-b border-slate-200 pb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-user-check text-teal-600"></i> Datos Clave
                     </h3>
-                    <ul class="space-y-4 text-sm text-slate-600">
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-teal-100 flex items-center justify-center text-teal-700"><i class="fa-solid fa-envelope"></i></div>
-                            <a href="mailto:angel87hz02@gmail.com" class="hover:text-teal-600 transition-colors font-medium">angel87hz02@gmail.com</a>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-teal-600"></i> 
+                            <a href="mailto:angel87hz02@gmail.com" class="hover:text-teal-600 transition-colors">angel87hz02@gmail.com</a>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700"><i class="fa-brands fa-whatsapp"></i></div>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i> 
                             <a href="https://wa.me/525549070918" target="_blank" class="hover:text-teal-600 font-semibold transition-colors">55.49070918</a>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-cyan-100 flex items-center justify-center text-cyan-700"><i class="fa-solid fa-language"></i></div>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-language text-teal-600"></i> 
                             <span>Español (Nativo) | Inglés Intermedio</span>
                         </li>
                     </ul>
@@ -207,102 +197,63 @@
     </section>
 
     <!-- Trayectoria Profesional -->
-    <section id="experiencia" class="py-24 bg-slate-50 border-y border-slate-200/80">
+    <section id="experiencia" class="py-20 bg-slate-50 border-y border-slate-200">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16" data-sal="slide-up">
-                <h2 class="text-3xl font-extrabold text-slate-900">Trayectoria Profesional</h2>
-                <div class="w-16 h-1 bg-teal-600 mx-auto rounded-full"></div>
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Trayectoria Profesional</h2>
+                <div class="w-12 h-1 bg-teal-600 mx-auto rounded-full"></div>
             </div>
 
             <div class="space-y-8">
                 <!-- Puesto 1 -->
-                <div class="pro-card p-8 rounded-2xl" data-sal="slide-up">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
+                <div class="clean-card p-8 rounded-2xl">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
                         <div>
-                            <span class="text-xs font-extrabold uppercase tracking-wider text-teal-800 bg-teal-100 px-3 py-1 rounded-full border border-teal-200/60 inline-block mb-2">Dic 2025 - Actualidad</span>
-                            <h3 class="text-2xl font-extrabold text-slate-900">Asesor Empresarial - PMO JR & QA Lead</h3>
-                            <h4 class="text-teal-600 font-semibold text-lg">JJM Tecnologías Innovadoras, S.A. de C.V.</h4>
+                            <span class="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">Diciembre 2025 - Actualmente</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-2">Asesor Empresarial - PMO JR & QA Lead</h3>
+                            <h4 class="text-teal-600 font-semibold">JJM Tecnologías Innovadoras, S.A. de C.V.</h4>
                         </div>
                     </div>
-                    <ul class="space-y-3 text-slate-600">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Gestión de Proyectos:</strong> Coordinación de equipos para la elaboración de nuevos proyectos, manteniendo un control estricto sobre el alcance, tiempo, cronogramas y entregables.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Gestión de Clientes & Stakeholders:</strong> Relación cercana con clientes para guiarlos en el avance de proyectos y facilitar la comunicación entre desarrollo, producto y negocio.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Mitigación de Riesgos & Control:</strong> Planeación estratégica para la mitigación de riesgos, administración de cambios de alcance, incidencias críticas y acciones correctivas.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Innovación e IA:</strong> Uso de Inteligencia Artificial para el mejoramiento de la experiencia de usuario (UX/UI) y generación de rediseños mediante prompts avanzados.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Liderazgo de QA:</strong> Planificación, ejecución y supervisión de pruebas UAT, regresión, unitarias, integración, sistemas y humo. Automatización de pruebas con IA.</span>
-                        </li>
+                    <ul class="space-y-2 text-slate-600 list-disc list-inside">
+                        <li><strong class="text-slate-800">Gestión de Proyectos:</strong> Coordinación de equipos para la elaboración de nuevos proyectos, manteniendo un control estricto sobre el alcance, tiempo, cronogramas y entregables.</li>
+                        <li><strong class="text-slate-800">Gestión de Clientes & Stakeholders:</strong> Relación cercana con clientes para guiarlos en el avance de proyectos y facilitar la comunicación entre desarrollo, producto y negocio.</li>
+                        <li><strong class="text-slate-800">Mitigación de Riesgos & Control:</strong> Planeación estratégica para la mitigación de riesgos, administración de cambios de alcance, incidencias críticas y acciones correctivas.</li>
+                        <li><strong class="text-slate-800">Innovación e IA:</strong> Uso de Inteligencia Artificial para el mejoramiento de la experiencia de usuario (UX/UI) y generación de rediseños mediante prompts avanzados.</li>
+                        <li><strong class="text-slate-800">Liderazgo de QA:</strong> Planificación, ejecución y supervisión de pruebas UAT, regresión, unitarias, integración, sistemas y humo. Automatización de pruebas con IA.</li>
                     </ul>
                 </div>
 
                 <!-- Puesto 2 -->
-                <div class="pro-card p-8 rounded-2xl" data-sal="slide-up">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
+                <div class="clean-card p-8 rounded-2xl">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-600 bg-slate-200 px-3 py-1 rounded-full inline-block mb-2">Sep 2023 - Nov 2025</span>
-                            <h3 class="text-2xl font-extrabold text-slate-900">Ingeniero de Pruebas SR & Administrador de Proyectos</h3>
-                            <h4 class="text-teal-600 font-semibold text-lg">Fundación Ai-Koi, A.C.</h4>
+                            <span class="text-xs font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">Septiembre 2023 - Noviembre 2025</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-2">Ingeniero de Pruebas SR & Administrador de Proyectos</h3>
+                            <h4 class="text-teal-600 font-semibold">Fundación Ai-Koi, A.C.</h4>
                         </div>
                     </div>
-                    <ul class="space-y-3 text-slate-600">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Administración de Proyectos:</strong> Control del ciclo de vida del software (Análisis, Desarrollo, Pruebas y Liberación) y configuración de JIRA para seguimiento.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Atención a Clientes & Documentación:</strong> Definición de requerimientos, presentación formal de avances, propuestas para venta de productos y elaboración de documentación de liberación.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Aseguramiento de Calidad:</strong> Ejecución de pruebas funcionales y de configuración en aplicaciones web y móviles (Android/iOS). Pruebas en Postman.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Estrategia QA:</strong> Coordinación de personal, diseño y actualización de suites/casos de prueba, actualización de ambientes de calidad y automatización de pruebas con IA.</span>
-                        </li>
+                    <ul class="space-y-2 text-slate-600 list-disc list-inside">
+                        <li><strong class="text-slate-800">Administración de Proyectos:</strong> Control del ciclo de vida del software (Análisis, Desarrollo, Pruebas y Liberación) y configuración de JIRA para seguimiento.</li>
+                        <li><strong class="text-slate-800">Atención a Clientes & Documentación:</strong> Definición de requerimientos, presentación formal de avances, propuestas para venta de productos y elaboración de documentación de liberación.</li>
+                        <li><strong class="text-slate-800">Aseguramiento de Calidad:</strong> Ejecución de pruebas funcionales y de configuración en aplicaciones web y móviles (Android/iOS). Pruebas en Postman.</li>
+                        <li><strong class="text-slate-800">Estrategia QA:</strong> Coordinación de personal, diseño y actualización de suites/casos de prueba, actualización de ambientes de calidad y automatización de pruebas con IA.</li>
                     </ul>
                 </div>
 
                 <!-- Puesto 3 -->
-                <div class="pro-card p-8 rounded-2xl" data-sal="slide-up">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
+                <div class="clean-card p-8 rounded-2xl">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-600 bg-slate-200 px-3 py-1 rounded-full inline-block mb-2">Jul 2022 - Ago 2023</span>
-                            <h3 class="text-2xl font-extrabold text-slate-900">Ingeniero de Pruebas JR (Freelancer)</h3>
-                            <h4 class="text-teal-600 font-semibold text-lg">Consultor Independiente / ND Negocios Digitales</h4>
+                            <span class="text-xs font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">Julio 2022 - Agosto 2023</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-2">Ingeniero de Pruebas JR (Freelancer)</h3>
+                            <h4 class="text-teal-600 font-semibold">Consultor Independiente / ND Negocios Digitales</h4>
                         </div>
                     </div>
-                    <ul class="space-y-3 text-slate-600">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Pruebas en Sitio:</strong> Análisis de requerimientos, diseño de matrices de trazabilidad y ejecución de pruebas de calidad en sitio para cliente Banjercito.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Pruebas Funcionales y No Funcionales:</strong> Ejecución de pruebas de instalación, configuración, usabilidad y documentación.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Alineación de Procesos:</strong> Participación activa en la certificación de CMMI Nivel 5 en ND Negocios Digitales y aplicación de metodología Scrum.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-teal-600 mt-1"></i>
-                            <span><strong class="text-slate-800">Creación de Contenido:</strong> Edición de imágenes en Photoshop y videos para contenidos en redes sociales.</span>
-                        </li>
+                    <ul class="space-y-2 text-slate-600 list-disc list-inside">
+                        <li><strong class="text-slate-800">Pruebas en Sitio:</strong> Análisis de requerimientos, diseño de matrices de trazabilidad y ejecución de pruebas de calidad en sitio para cliente Banjercito.</li>
+                        <li><strong class="text-slate-800">Pruebas Funcionales y No Funcionales:</strong> Ejecución de pruebas de instalación, configuración, usabilidad y documentación.</li>
+                        <li><strong class="text-slate-800">Alineación de Procesos:</strong> Participación activa en la certificación de CMMI Nivel 5 en ND Negocios Digitales y aplicación de metodología Scrum.</li>
+                        <li><strong class="text-slate-800">Creación de Contenido:</strong> Edición de imágenes en Photoshop y videos para contenidos en redes sociales.</li>
                     </ul>
                 </div>
             </div>
@@ -310,16 +261,281 @@
     </section>
 
     <!-- Proyectos Clave -->
-    <section id="proyectos" class="py-24 bg-white">
+    <section id="proyectos" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16" data-sal="slide-up">
-                <h2 class="text-3xl font-extrabold text-slate-900">Proyectos Clave Administrados</h2>
-                <div class="w-16 h-1 bg-teal-600 mx-auto rounded-full"></div>
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Proyectos Clave Administrados</h2>
+                <div class="w-12 h-1 bg-teal-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="clean-card p-6 rounded-2xl space-y-3">
+                    <span class="text-xs font-bold text-teal-600 uppercase tracking-wider">JJM Tecnologías Innovadoras</span>
+                    <h3 class="font-bold text-slate-900 text-lg border-b border-slate-100 pb-2">Proyectos Empresariales</h3>
+                    <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li>Pruebas Psicométricas</li>
+                        <li>Proyecto KOVA (Veterinaria)</li>
+                        <li>Proyecto EXAMINA (UAM)</li>
+                        <li>Página Web JJM Tecnologías</li>
+                        <li>Proyecto Compranet JJM</li>
+                        <li>Proyecto Otorrino / COMPITE</li>
+                        <li>Gestión de Servidores JJM</li>
+                        <li>QUANTUM TV</li>
+                    </ul>
+                </div>
+
+                <div class="clean-card p-6 rounded-2xl space-y-3">
+                    <span class="text-xs font-bold text-teal-600 uppercase tracking-wider">Fundación Ai-Koi, A.C.</span>
+                    <h3 class="font-bold text-slate-900 text-lg border-b border-slate-100 pb-2">Proyectos Institucionales</h3>
+                    <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li>Psicología, Conciencia y Proyección</li>
+                        <li>Página Web Fundación Ai-Koi</li>
+                        <li>Plataforma E-learning</li>
+                        <li>E-commerce Fundación Ai-Koi</li>
+                        <li>Sistema de Credenciales y Afiliados</li>
+                        <li>Estrategias de Publicidad</li>
+                    </ul>
+                </div>
+
+                <div class="clean-card p-6 rounded-2xl space-y-3">
+                    <span class="text-xs font-bold text-teal-600 uppercase tracking-wider">Freelance / Consultoría</span>
+                    <h3 class="font-bold text-slate-900 text-lg border-b border-slate-100 pb-2">Gubernamental y Privado</h3>
+                    <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li>Proyecto Banjercito (Pruebas en Sitio)</li>
+                        <li>Proyecto Pizarras en INAI</li>
+                        <li>Certificación CMMI Nivel 5 (ND Negocios Digitales)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competencias Clave -->
+    <section id="competencias" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Competencias & Herramientas</h2>
+                <div class="w-12 h-1 bg-teal-600 mx-auto rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="pro-card p-6 rounded-2xl space-y-4" data-sal="slide-up" data-sal-delay="100">
-                    <span class="text-xs font-extrabold text-teal-600 uppercase tracking-widest bg-teal-50 px-2.5 py-1 rounded-md border border-teal-100">JJM Tecnologías</span>
-                    <h3 class="font-bold text-slate-900 text-xl border-b border-slate-100 pb-3">Empresariales</h3>
-                    <ul class="text-sm text-slate-600 space-y-2">
-                        <li class="flex items-center gap-
+                <div class="clean-card p-8 rounded-2xl text-center space-y-4">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-600 text-2xl">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Gestión & Metodologías</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        PMO, Scrum, PMBOK, Gestión de Riesgos, CMMI Nivel 5, Stakeholders, Liderazgo de Equipos, Solución de Conflictos, Pensamiento Crítico.
+                    </p>
+                </div>
+
+                <div class="clean-card p-8 rounded-2xl text-center space-y-4">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-600 text-2xl">
+                        <i class="fa-solid fa-vial"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">QA & Automatización</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Cypress, TestCase Studio (Selenium IDE), Katalon Recorder, Test & Feedback, Postman, Pruebas Funcionales, UAT, Regresión, iOS/Android.
+                    </p>
+                </div>
+
+                <div class="clean-card p-8 rounded-2xl text-center space-y-4">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 text-2xl">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">IA & Herramientas Software</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Gemini, ChatGPT, Gemini AI Studio, Claude, Lovable, JIRA, Trello, GitHub, Snagit, MySQL, Node.js, FileZilla, Visual Studio Code.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educación y Cursos -->
+    <section id="educacion" class="py-20 bg-white border-t border-slate-200">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Educación & Certificaciones</h2>
+                <div class="w-12 h-1 bg-teal-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                        <i class="fa-solid fa-award text-teal-600"></i> Certificaciones & Cursos
+                    </h3>
+                    <div class="clean-card p-6 rounded-2xl space-y-4">
+                        <div class="border-b border-slate-100 pb-3">
+                            <span class="text-xs font-bold text-teal-600">ID Credencial: 1180713</span>
+                            <h4 class="font-bold text-slate-900 text-lg">Scrum Fundamentals Certified (SFC) 5ta Edición</h4>
+                        </div>
+                        <div class="border-b border-slate-100 pb-3">
+                            <h4 class="font-bold text-slate-900 text-lg">Planificación y Gestión de Proyectos</h4>
+                            <p class="text-sm text-slate-500">Certificado PMBOK & Agile Scrum</p>
+                        </div>
+                        <div class="border-b border-slate-100 pb-3">
+                            <h4 class="font-bold text-slate-900 text-lg">Testing Masterclass con IA</h4>
+                            <p class="text-sm text-slate-500">Especialización en QA y Automatización impulsada por IA</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-lg">Fundamentos de Gestión de Proyectos</h4>
+                            <p class="text-sm text-slate-500">Capacitación continua en metodologías</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                        <i class="fa-solid fa-graduation-cap text-teal-600"></i> Formación Académica
+                    </h3>
+                    <div class="clean-card p-6 rounded-2xl space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Titulado (2022 - 2025)</span>
+                            <h4 class="font-bold text-slate-900 text-lg mt-2">Ingeniería en Sistemas Computacionales</h4>
+                            <p class="text-sm text-teal-600 font-semibold">Universidad UTEL</p>
+                        </div>
+                        <div class="border-t border-slate-100 pt-3">
+                            <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full">Trunco (2008 - 2011)</span>
+                            <h4 class="font-bold text-slate-900 text-lg mt-2">Ingeniería en Sistemas Computacionales</h4>
+                            <p class="text-sm text-slate-500">Instituto Tecnológico de Milpa Alta</p>
+                        </div>
+                        <div class="border-t border-slate-100 pt-3">
+                            <h4 class="font-bold text-slate-900 text-lg">Auxiliar en Computación</h4>
+                            <p class="text-sm text-slate-500">Bachillerato General Ixtacamaxtitlán, Puebla</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contacto -->
+    <footer id="contacto" class="bg-slate-900 text-white py-16">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
+            <h2 class="text-3xl font-bold">¿Hablamos sobre tu próximo proyecto?</h2>
+            <p class="text-slate-400">Disponible para posiciones de Asesor Empresarial, PMO Jr, Project Manager o QA Lead.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://wa.me/525549070918" target="_blank" class="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/20">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp (55.49070918)
+                </a>
+                <a href="mailto:angel87hz02@gmail.com" class="px-6 py-3 rounded-full bg-teal-600 hover:bg-teal-500 text-white font-semibold transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </a>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 text-sm text-slate-500">
+                © 2026 Angel Hernández (ING. Hedz). Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts de Interactividad -->
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        const canvas = document.getElementById('interactive-bg');
+        if(canvas) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const particleCount = 45;
+            let mouse = { x: null, y: null, radius: 140 };
+
+            function resizeCanvas() {
+                canvas.width = canvas.parentElement.offsetWidth;
+                canvas.height = canvas.parentElement.offsetHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            window.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+            });
+
+            window.addEventListener('mouseleave', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.8;
+                    this.vy = (Math.random() - 0.5) * 0.8;
+                    this.radius = Math.random() * 2 + 1.5;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                    ctx.fill();
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                    if (mouse.x !== null && mouse.y !== null) {
+                        let dx = mouse.x - this.x;
+                        let dy = mouse.y - this.y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < mouse.radius) {
+                            let force = (mouse.radius - distance) / mouse.radius;
+                            let directionX = dx / distance;
+                            let directionY = dy / distance;
+
+                            this.x -= directionX * force * 3;
+                            this.y -= directionY * force * 3;
+                        }
+                    }
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animateBg() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+
+                    for (let j = i + 1; j < particles.length; j++) {
+                        let dx = particles[i].x - particles[j].x;
+                        let dy = particles[i].y - particles[j].y;
+                        let dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < 110) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${0.25 - dist / 440})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateBg);
+            }
+            animateBg();
+        }
+    </script>
+</body>
+</html>
