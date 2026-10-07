@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ángel Hernández | Ingeniero en Sistemas, PMO Jr & QA Lead</title>
+    <title>Angel Hernández | Ingeniero en Sistemas, PMO Jr & QA Lead</title>
 
     <!-- FAVICON INTEGRADO [ING. Hedz] -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230f172a'/><path d='M 18 20 L 18 80 L 72 80' stroke='%230D9488' stroke-width='6' fill='none' stroke-linecap='square'/><text x='26' y='46' font-family='sans-serif' font-weight='800' font-size='26' fill='%23ffffff'>ING.</text><text x='26' y='72' font-family='sans-serif' font-weight='800' font-size='26' fill='%2394a3b8'>Hedz</text></svg>">
@@ -44,13 +44,11 @@
             color: #334155;
         }
         
-        /* Banner Gradient Base */
         .hero-banner {
             background: linear-gradient(135deg, #0D9488 0%, #06B6D4 40%, #2563EB 100%);
             position: relative;
         }
 
-        /* Canvas interactivo en el fondo del Hero */
         #interactive-bg {
             position: absolute;
             top: 0;
@@ -61,7 +59,6 @@
             z-index: 1;
         }
 
-        /* Clean Card Shadows & Borders */
         .clean-card {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
@@ -74,41 +71,43 @@
             border-color: #CBD5E1;
         }
 
-        /* Logo ING. Hedz estilo limpio */
+        /* Logo Estructurado para evitar superposición */
         .logo-box-light {
             border-left: 3px solid #0D9488;
             border-bottom: 3px solid #0D9488;
-            padding: 2px 0 2px 8px;
+            padding: 2px 8px;
             line-height: 1.1;
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
+            white-space: nowrap;
         }
     </style>
 </head>
 <body class="antialiased selection:bg-teal-500 selection:text-white">
 
-    <!-- Navbar Limpia y Moderna -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- Navbar Limpia con Espaciado Garantizado -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
             
-            <!-- Logo -->
-            <a href="#inicio" class="flex items-center gap-3">
+            <!-- Logo "Angel Hernández" con separación adecuada -->
+            <a href="#inicio" class="flex-shrink-0 flex items-center">
                 <div class="logo-box-light">
-                    <div class="text-base font-bold text-slate-900">ING.</div>
-                    <div class="text-lg font-extrabold text-teal-600">Hedz</div>
+                    <span class="text-xs font-bold text-slate-900 tracking-wider uppercase">ING.</span>
+                    <span class="text-base font-extrabold text-teal-600">Angel Hernández</span>
                 </div>
             </a>
 
-            <!-- Navegación -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
-                <a href="#sobre-mi" class="hover:text-teal-600 transition-colors">Sobre Mí</a>
-                <a href="#experiencia" class="hover:text-teal-600 transition-colors">Experiencia</a>
-                <a href="#proyectos" class="hover:text-teal-600 transition-colors">Proyectos Clave</a>
-                <a href="#competencias" class="hover:text-teal-600 transition-colors">Competencias</a>
-                <a href="#certificaciones" class="hover:text-teal-600 transition-colors">Educación & Cursos</a>
-                <a href="#contacto" class="px-5 py-2.5 rounded-full bg-teal-600 hover:bg-teal-700 text-white font-semibold transition-all shadow-md shadow-teal-600/20">Contacto</a>
+            <!-- Menú de Navegación -->
+            <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#sobre-mi" class="hover:text-teal-600 transition-colors whitespace-nowrap">Sobre Mí</a>
+                <a href="#experiencia" class="hover:text-teal-600 transition-colors whitespace-nowrap">Experiencia</a>
+                <a href="#proyectos" class="hover:text-teal-600 transition-colors whitespace-nowrap">Proyectos Clave</a>
+                <a href="#competencias" class="hover:text-teal-600 transition-colors whitespace-nowrap">Competencias</a>
+                <a href="#certificaciones" class="hover:text-teal-600 transition-colors whitespace-nowrap">Educación & Cursos</a>
+                <a href="#contacto" class="px-5 py-2.5 rounded-full bg-teal-600 hover:bg-teal-700 text-white font-semibold transition-all shadow-md shadow-teal-600/20 whitespace-nowrap">Contacto</a>
             </nav>
 
-            <button id="menu-btn" class="md:hidden text-slate-700 focus:outline-none">
+            <button id="menu-btn" class="md:hidden text-slate-700 focus:outline-none p-2">
                 <i class="fa-solid fa-bars text-2xl"></i>
             </button>
         </div>
@@ -123,17 +122,103 @@
         </div>
     </header>
 
-    <!-- Hero Section Centrada con Fondo Interactivo -->
+    <!-- Hero Section -->
     <section id="inicio" class="hero-banner text-white py-24 md:py-32 relative overflow-hidden">
-        <!-- Canvas para el efecto interactivo al mover el cursor -->
         <canvas id="interactive-bg"></canvas>
 
         <div class="max-w-4xl mx-auto px-6 relative z-10 text-center space-y-8">
-            
-            <!-- Badge / Insignia de Cargo Centrada -->
             <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm md:text-base font-medium shadow-sm">
                 <i class="fa-solid fa-circle-check text-teal-300"></i>
                 <span>Ingeniero en Sistemas | Asesor Empresarial - PMO Jr & QA Lead</span>
             </div>
 
-            <!-- Título
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight">
+                Angel Hernández
+            </h1>
+
+            <p class="text-lg sm:text-2xl text-teal-50 font-normal max-w-3xl mx-auto leading-relaxed">
+                Gestión de Proyectos, Quality Assurance y Optimización de Procesos impulsados por Inteligencia Artificial.
+            </p>
+
+            <div class="flex flex-wrap justify-center items-center gap-4 pt-4">
+                <a href="https://wa.me/525549070918" target="_blank" class="px-8 py-3.5 rounded-full bg-white text-teal-800 hover:bg-slate-100 font-bold shadow-lg transition-all hover:scale-105 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-emerald-600 text-xl"></i> Contactar
+                </a>
+                <a href="#experiencia" class="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold transition-all hover:scale-105">
+                    Ver Trayectoria
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí -->
+    <section id="sobre-mi" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Sobre Mí</h2>
+                <div class="w-12 h-1 bg-teal-600 mx-auto rounded-full"></div>
+                <p class="text-slate-600 text-lg">Profesional orientado a resultados, mejora continua y aseguramiento de calidad de software.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-2 space-y-4 text-slate-600 leading-relaxed text-lg">
+                    <p>
+                        Soy <strong class="text-slate-900">Ingeniero en Sistemas Computacionales</strong> titulado por la Universidad UTEL. Cuento con más de un año de experiencia liderando proyectos y equipos multidisciplinarios, garantizando soluciones de alta calidad mediante una colaboración efectiva entre áreas de desarrollo, producto y negocio.
+                    </p>
+                    <p>
+                        Poseo más de tres años de experiencia en <strong class="text-teal-700">Quality Assurance (QA)</strong>, definiendo estrategias de validación y ejecutando pruebas funcionales, de integración, regresión y UAT para aplicaciones web y móviles bajo metodologías ágiles.
+                    </p>
+                    <p>
+                        Complemento mi perfil con el uso de herramientas de <strong class="text-slate-900">Inteligencia Artificial</strong> para optimizar la productividad, diseñar propuestas visuales/UX mediante <em>prompt engineering</em> avanzado, automatizar pruebas y fortalecer la toma de decisiones.
+                    </p>
+                </div>
+
+                <div class="clean-card p-6 rounded-2xl space-y-4 bg-slate-50 border-slate-200">
+                    <h3 class="font-bold text-slate-900 border-b border-slate-200 pb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-user-check text-teal-600"></i> Datos Clave
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-teal-600 mt-1"></i> 
+                            <span>Ejidos de San Pedro Mártir, Tlalpan, C.P. 14640, CDMX</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-teal-600"></i> 
+                            <a href="mailto:angel87hz02@gmail.com" class="hover:text-teal-600 transition-colors">angel87hz02@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i> 
+                            <a href="https://wa.me/525549070918" target="_blank" class="hover:text-teal-600 font-semibold transition-colors">55.49070918</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-language text-teal-600"></i> 
+                            <span>Español (Nativo) | Inglés Intermedio</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trayectoria Profesional -->
+    <section id="experiencia" class="py-20 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Trayectoria Profesional</h2>
+                <div class="w-12 h-1 bg-teal-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="clean-card p-8 rounded-2xl">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <span class="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">Diciembre 2025 - Actualmente</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-2">Asesor Empresarial - PMO JR & QA Lead</h3>
+                            <h4 class="text-teal-600 font-semibold">JJM Tecnologías Innovadoras, S.A. de C.V.</h4>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-slate-600 list-disc list-inside">
+                        <li><strong class="text-slate-800">Gestión de Proyectos:</strong> Coordinación de equipos para la elaboración de nuevos proyectos, manteniendo un control estricto sobre el alcance, tiempo, cronogramas y entregables.</li>
+                        <li><strong class="text-slate-800">Gestión de Clientes & Stakeholders:</strong> Relación cercana con clientes para guiarlos en el avance de proyectos y facilitar la comunicación entre desarrollo, producto y negocio.</li>
+                        <li><strong class="text-slate-800">Mitigación de Riesgos & Control:</strong> Planeación estratégica para la mitigación de riesgos, administración de cambios de alcance, incidencias críticas y acciones correctivas.</li>
+                        <li><strong class="text-slate-800">Innovación e IA:</strong> Uso de Inteligencia Artificial para el mejoramiento de la experiencia de usuario (UX
